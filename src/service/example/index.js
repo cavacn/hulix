@@ -15,4 +15,4 @@ class Example {
 }
 
 
-app.service('es', Example)
+app.service('example', Example)
