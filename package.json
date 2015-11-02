@@ -1,6 +1,6 @@
 {
-  "name": "ng-webpack-bootstrap",
-  "version": "1.0.0",
+  "name": "hulix",
+  "version": "0.0.1",
   "description": "A workflow for Angular made with Webpack",
   "scripts": {
     "build": "webpack --config webpack.build.js --bail -p",
@@ -8,19 +8,10 @@
     "test": "karma start",
     "test:live": "karma start --auto-watch --no-single-run"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hjin-me/ng-webpack-bootstrap.git"
-  },
-  "author": "Jesus Rodriguez",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hjin-me/ng-webpack-bootstrap/issues"
-  },
   "babel": {
     "stage": 1
   },
-  "homepage": "https://github.com/hjin-me/ng-webpack-bootstrap",
   "dependencies": {
     "angular": "^1.3.16",
     "angular-ui-router": "^0.2.15",
@@ -58,5 +49,21 @@
     "style-loader": "^0.12.3",
     "webpack": "^1.9.11",
     "webpack-dev-server": "^1.9.0"
-  }
+  },
+  "main": "lib/cli.js",
+  "keywords": [
+    "babel",
+    "es6",
+    "angular",
+    "webpack"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjin-me/hulix.git"
+  },
+  "author": "HJin_me",
+  "bugs": {
+    "url": "https://github.com/hjin-me/hulix/issues"
+  },
+  "homepage": "https://github.com/hjin-me/hulix#readme"
 }
