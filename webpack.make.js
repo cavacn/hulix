@@ -1,6 +1,7 @@
 'use strict';
 
 // Modules
+var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -47,7 +48,7 @@ module.exports = function makeWebpackConfig(options) {
     } else {
         config.output = {
             // Absolute output directory
-            path: __dirname + '/public',
+            path: path.join(process.cwd(), 'public'),
 
             // Output path from the view of the page
             // Uses webpack-dev-server in development
