@@ -26,6 +26,14 @@
     </style>
 </head>
 <body ng-cloak>
-<div ui-view></div>
+<div ng-controller="ExampleController">
+    <div class="well">
+        <p>
+            <button type="button" class="btn btn-danger" ng-click="vm.shutOut()">Who Are U?</button>
+        </p>
+        <directive-example slogan="slogan"></directive-example>
+    </div>
+
+</div>
 </body>
 </html>

@@ -1,5 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css'
-//import 'font-awesome/css/font-awesome.css'
 import './lib/neat.css'
 import './lib/pace.css'
 import pace from './lib/pace.js'
