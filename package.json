@@ -29,9 +29,11 @@
     "minimist": "^1.2.0",
     "ng-annotate-loader": "0.0.10",
     "null-loader": "0.1.1",
+    "optimist": "^0.6.1",
     "postcss-loader": "0.7.0",
     "raw-loader": "0.5.1",
     "style-loader": "0.13.0",
+    "supports-color": "^3.1.2",
     "webpack": "1.12.2",
     "webpack-dev-server": "1.12.1"
   },
@@ -50,6 +52,9 @@
   "author": "HJin_me",
   "bugs": {
     "url": "https://github.com/hjin-me/hulix/issues"
+  },
+  "bin": {
+    "hulix": "bin/hulix.js"
   },
   "homepage": "https://github.com/hjin-me/hulix#readme"
 }
