@@ -3,6 +3,23 @@
 var path = require('path');
 var url = require('url');
 var fs = require('fs');
+// pre check
+// local dependence
+var localDeps = ['babel-preset-es2015', 'babel-preset-stage-0'];
+var missingDeps = [];
+localDeps.forEach(function (mod) {
+    try {
+        require(path.join(process.cwd(), 'node_modules', mod));
+    } catch (e) {
+        missingDeps.push(mod)
+    }
+});
+if (missingDeps.length > 0) {
+    console.error('missing some package, please install them with command below\n`npm i ' + missingDeps.join(' ') + ' --save-dev --registry=https://registry.npm.taobao.org` ')
+    process.exit(2);
+    return
+}
+
 
 // Local version replaces global one
 try {
@@ -155,19 +172,24 @@ function devServer() {
     var options = wpOpt.devServer || firstWpOpt.devServer || {};
     // load custom backend
     var customBackEndConfig = path.join(process.cwd(), 'proxy.config.js');
-    var fd = fs.statSync(customBackEndConfig);
-    if (fd.isFile()) {
-        var customBackend = require(customBackEndConfig);
-        if (customBackend.proxy) {
-            options.proxy = customBackend.proxy
+    var customBackend = {};
+    try {
+        var fd = fs.statSync(customBackEndConfig);
+        if (fd.isFile()) {
+            customBackend = require(customBackEndConfig);
         }
-        if (customBackend.host) {
-            options.host = customBackend.host
-        }
-        if (customBackend.port) {
-            options.port = customBackend.port
-        }
+    } catch (e) {
     }
+    if (customBackend.proxy) {
+        options.proxy = customBackend.proxy
+    }
+    if (customBackend.host) {
+        options.host = customBackend.host
+    }
+    if (customBackend.port) {
+        options.port = customBackend.port
+    }
+
     if (argv.host !== 'localhost' || !options.host) {
         options.host = argv.host;
     }
