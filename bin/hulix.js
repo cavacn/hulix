@@ -1,25 +1,7 @@
 #!/usr/bin/env node
-
 var path = require('path');
 var url = require('url');
 var fs = require('fs');
-// pre check
-// local dependence
-var localDeps = ['babel-preset-es2015', 'babel-preset-stage-0'];
-var missingDeps = [];
-localDeps.forEach(function (mod) {
-    try {
-        require(path.join(process.cwd(), 'node_modules', mod));
-    } catch (e) {
-        missingDeps.push(mod)
-    }
-});
-if (missingDeps.length > 0) {
-    console.error('missing some package, please install them with command below\n`npm i ' + missingDeps.join(' ') + ' --save-dev --registry=https://registry.npm.taobao.org` ')
-    process.exit(2);
-    return
-}
-
 
 // Local version replaces global one
 try {
@@ -43,12 +25,21 @@ if (argv._.indexOf('dev') > -1) {
 if (argv._.indexOf('build') > -1) {
     action = 'build'
 }
+if (argv.v || argv.version) {
+    action = 'version'
+}
 switch (action) {
     case 'dev':
+        depsCheck();
         devServer();
         break;
     case 'build':
+        depsCheck();
         buildCode();
+        break;
+    case 'version':
+        var p = require('../package.json');
+        console.log(p.name, p.version);
         break;
     default:
         helpInfo();
@@ -324,5 +315,23 @@ function ifArg(name, fn, init) {
     } else if (typeof argv[name] !== 'undefined') {
         if (init) init();
         fn(argv[name], -1);
+    }
+}
+
+function depsCheck() {
+    // local dependence
+    var localDeps = ['babel-preset-es2015', 'babel-preset-stage-0'];
+    var missingDeps = [];
+    localDeps.forEach(function (mod) {
+        try {
+            fs.statSync(path.join(process.cwd(), 'node_modules', mod))
+        } catch (e) {
+            missingDeps.push(mod)
+        }
+    });
+
+    if (missingDeps.length > 0) {
+        console.error('missing some package, please install them with command below\n`npm i ' + missingDeps.join(' ') + ' --save-dev --registry=https://registry.npm.taobao.org` ')
+        process.exit(2);
     }
 }
