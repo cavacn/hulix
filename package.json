@@ -1,6 +1,6 @@
 {
   "name": "hulix",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "description": "A workflow for Angular made with Webpack",
   "scripts": {
     "test": "karma start",
