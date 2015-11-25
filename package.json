@@ -1,11 +1,8 @@
 {
   "name": "hulix",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A workflow for Angular made with Webpack",
-  "scripts": {
-    "test": "karma start",
-    "test:live": "karma start --auto-watch --no-single-run"
-  },
+  "scripts": {},
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "6.1.0",
@@ -16,6 +13,7 @@
     "css-loader": "0.23.0",
     "extract-text-webpack-plugin": "0.8.2",
     "file-loader": "0.8.4",
+    "html-loader": "0.4.0",
     "html-webpack-plugin": "1.5.2",
     "less": "2.5.3",
     "less-loader": "2.2.1",
